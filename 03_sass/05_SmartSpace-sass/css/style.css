@@ -73,12 +73,19 @@ img {
 }
 
 .btn {
+  display: block;
+  text-align: center;
   font-weight: bold;
   color: #fff;
   background-color: #F85A47;
   max-width: 200px;
   padding: 20px 33px;
   border-radius: 5%;
+}
+
+.btn--attention {
+  background-color: #FF9900;
+  min-width: 100%;
 }
 
 .mainImg {
@@ -134,6 +141,13 @@ img {
   font-weight: bold;
 }
 
+.people--reverse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
 .footer {
   padding: 100px 0;
   background-color: #DBFFFF;
@@ -151,5 +165,35 @@ img {
 .footer__small {
   font-size: 12px;
   font-weight: bold;
+}
+
+.deals {
+  margin-bottom: 120px;
+}
+.deals__inner {
+  width: 55.5555555556%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.deals__title {
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-size: 48px;
+  line-height: 1.2083333333;
+}
+.deals__text {
+  margin-bottom: 60px;
+}
+.deals__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.post__item {
+  width: 30%;
+}
+.post__img {
+  margin-bottom: 30px;
 }
 /*# sourceMappingURL=style.css.map */

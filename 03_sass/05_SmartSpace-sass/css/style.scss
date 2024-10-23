@@ -40,17 +40,6 @@ $color-bcg: #DBFFFF;
     align-items: $ai;
 }
 
-@mixin mix-btn($bgc: $color-btn, $mw: 200px) {
-    font-weight: bold;
-    color: #fff;
-    background-color: $bgc;
-    max-width: $mw;
-    padding: 20px 33px;
-
-    border-radius: 5%;
-}
-
-
 body {
     color: $color-text;
     font-size: 15px;
@@ -134,7 +123,21 @@ img {
 
 // btn
 .btn {
-    @include mix-btn();
+    display: block;
+
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background-color: $color-btn;
+    max-width: 200px;
+    padding: 20px 33px;
+
+    border-radius: 5%;
+}
+
+.btn--attention {
+    background-color: $color-attention;
+    min-width: 100%;
 }
 
 // mainImg
@@ -197,6 +200,11 @@ img {
     }
 }
 
+.people--reverse {
+    @include mix-flex();
+    flex-direction: row-reverse;
+}
+
 //footer
 .footer {
     padding: 100px 0;
@@ -215,5 +223,37 @@ img {
     &__small {
         font-size: 12px;
         font-weight: bold;
+    }
+}
+
+// deals
+.deals {
+    margin-bottom: 120px;
+
+    &__inner {
+        @include mix-inner();
+    }
+
+    &__title {
+        @include mix-title();
+    }
+
+    &__text {
+        margin-bottom: 60px;
+    }
+
+    &__list {
+        @include mix-flex(flex-start);
+    }
+}
+
+// post
+.post {
+    &__item {
+        width: (300/1000*100%);
+    }
+
+    &__img {
+        margin-bottom: 30px;
     }
 }
