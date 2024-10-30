@@ -1,0 +1,369 @@
+@charset "utf-8";
+
+$color-text: #404040;
+$color-attention: #985E5B;
+$color-back: #EDEFF2;
+
+$breakpoints: (
+    "tablet": "screen and (min-width: 640px)",
+    "desktop": "screen and (min-width: 800px)",
+    "full": "screen and (min-width: 1200px)",
+    ) !default;
+
+/* minixの設定 */
+@mixin mix-query($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin mix-inner($w: (560/640)*100%, $mw: 1200px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin mix-flex($ai: center, $jc: space-between) {
+    display: flex;
+    align-items: $ai;
+    justify-content: $jc;
+}
+
+@mixin mix-title {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: (27/18
+    );
+padding-bottom: 15px;
+margin-bottom: 40px;
+
+border-bottom: 1px solid #DDDDDD;
+}
+
+body {
+    color: $color-text;
+    font-family: Helvetica,
+        Arial,
+        sans-serif;
+    font-size: 14px;
+    line-height: (21/14);
+    letter-spacing: (100/1000)+em;
+}
+
+img {
+    vertical-align: bottom;
+    max-width: 100%;
+    height: auto;
+}
+
+//--------------------------component
+//nav
+.nav {
+    &__list {
+        @include mix-flex();
+    }
+
+    &__item {
+        font-size: 12px;
+        margin-left: 20px;
+        font-weight: bold;
+    }
+
+    &__item:first-child {
+        color: $color-attention ;
+    }
+}
+
+//card
+.card {
+    margin-bottom: 80px;
+
+    @include mix-query(tablet) {
+        width: (330/700*100%);
+        @include mix-flex(stretch);
+        flex-direction: column;
+        align-items: stretch;
+
+        margin-bottom: 0;
+    }
+
+    &__img {
+        margin-bottom: 30px;
+    }
+
+    &__text {
+        margin-bottom: 50px;
+    }
+}
+
+//btn
+.btn {
+    display: block;
+
+    max-width: 300px;
+    color: #fff;
+    background-color: $color-attention;
+    font-weight: bold;
+
+    padding: 18px 0;
+    text-align: center;
+    margin-left: auto;
+
+    @include mix-query(tablet) {
+        width: 100%;
+        max-width: 100%;
+        margin-top: auto;
+    }
+}
+
+//form
+.form {
+    &__title {
+        color: $color-attention;
+        font-weight: bold;
+        box-shadow: 2px 1px $color-attention;
+        min-width: 92px;
+        padding: 8px 12px;
+        text-align: right;
+    }
+
+    &__text {
+        word-break: break-all;
+        margin-left: 30px;
+    }
+}
+
+// num
+.num {
+    position: absolute;
+
+    top: 5%;
+    left: 8%;
+
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+
+    //強制的に縦を中央揃えにしているので今後修正予定
+    padding: 13px;
+
+    color: #fff;
+    background-color: $color-attention;
+    border-radius: 50%;
+}
+
+.span {
+    display: inline-block;
+}
+
+//--------------------------index
+// header
+.header {
+    margin: 40px 0;
+
+    &__inner {
+        @include mix-inner();
+        @include mix-flex();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1200/1900)*100%)
+        }
+    }
+}
+
+// inspired
+.inspired {
+    margin-bottom: 100px;
+    padding: 400px 0 100px;
+    background: url(../images/pic_main.png)no-repeat center center;
+    color: #fff;
+    text-align: right;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1200/1900)*100%);
+        }
+    }
+
+    &__title {
+        font-size: 42px;
+        font-weight: bold;
+        line-height: (50/42);
+
+        margin-bottom: 20px;
+
+        @include mix-query(tablet) {
+            font-size: 50px;
+        }
+    }
+
+    &__text {
+        font-size: 18px;
+        line-height: (22/18);
+    }
+}
+
+.content {
+    @include mix-query(desktop) {
+        @include mix-flex(flex-start);
+        @include mix-inner((1200/1900)*100%)
+    }
+}
+
+//service
+.service {
+    margin-bottom: 100px;
+
+    @include mix-query(desktop) {
+        width: (700/1200)*100%;
+    }
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            width: 100%;
+        }
+    }
+
+    &__title {
+        @include mix-title();
+    }
+
+    &__list {
+        @include mix-query(tablet) {
+            @include mix-flex(stretch);
+            flex-wrap: wrap;
+
+        }
+    }
+}
+
+//information
+.information {
+    margin-bottom: 100px;
+
+    @include mix-query(desktop) {
+        width: (400/1200)*100%;
+    }
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            width: 100%;
+        }
+    }
+
+    &__title {
+        @include mix-title();
+    }
+
+    &__list {
+        @include mix-flex(center, flex-start);
+        margin-bottom: 15px;
+    }
+}
+
+
+//footer
+.footer {
+    padding: 40px 0;
+    background-color: $color-back;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1200/1900)*100%);
+            @include mix-flex()
+        }
+    }
+
+    &__img {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 25px;
+
+        @include mix-query(desktop) {
+            margin: 0;
+        }
+    }
+
+    &__catch {
+        font-size: 12px;
+        display: block;
+        text-align: center;
+    }
+}
+
+//-------------------about
+
+.consept {
+    margin: 100px 0;
+    text-align: center;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1200/1900)*100%)
+        }
+    }
+
+    &__title {
+        font-size: 42px;
+
+        font-weight: bold;
+        text-decoration: underline;
+        text-decoration-color: #985E5B;
+        text-underline-offset: 15px;
+        text-decoration-thickness: 4px;
+
+        margin-bottom: 60px;
+    }
+
+    &__text {
+        line-height: (36/18);
+        font-size: 18px;
+    }
+}
+
+.floor {
+    margin-bottom: 100px;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1200/1900)*100%)
+        }
+    }
+
+    &__title {
+        @include mix-title();
+    }
+
+    &__list {
+        @include mix-query(desktop) {
+            @include mix-flex();
+        }
+    }
+
+    & .card {
+        position: relative;
+        width: 100%;
+
+        @include mix-query(desktop) {
+            width: (380/1200)*100%;
+        }
+    }
+
+    & .card__text {
+        margin-bottom: 0;
+    }
+}
