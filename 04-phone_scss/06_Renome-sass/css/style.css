@@ -296,12 +296,12 @@ img {
 .consept__title {
   font-size: 42px;
   font-weight: bold;
-  text-decoration: underline;
-  -webkit-text-decoration-color: #985E5B;
-          text-decoration-color: #985E5B;
-  text-underline-offset: 15px;
-  text-decoration-thickness: 4px;
-  margin-bottom: 60px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto 60px;
+  border-bottom: 4px solid #985E5B;
+  padding-bottom: 15px;
 }
 .consept__text {
   line-height: 2;
@@ -347,6 +347,17 @@ img {
 @media screen and (min-width: 800px) {
   .floor .card {
     width: 31.6666666667%;
+  }
+}
+.floor .card__img {
+  width: 100%;
+  aspect-ratio: 560/315;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media screen and (min-width: 800px) {
+  .floor .card__img {
+    aspect-ratio: 380/285;
   }
 }
 .floor .card__text {

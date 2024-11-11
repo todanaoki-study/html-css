@@ -319,12 +319,16 @@ img {
         font-size: 42px;
 
         font-weight: bold;
-        text-decoration: underline;
-        text-decoration-color: #985E5B;
-        text-underline-offset: 15px;
-        text-decoration-thickness: 4px;
+        // text-decoration: underline;
+        // text-decoration-color: #985E5B;
+        // text-underline-offset: 15px;
+        // text-decoration-thickness: 4px;
 
-        margin-bottom: 60px;
+        width: fit-content;
+        margin: 0 auto 60px;
+        border-bottom: 4px solid $color-attention;
+
+        padding-bottom: 15px;
     }
 
     &__text {
@@ -360,6 +364,16 @@ img {
 
         @include mix-query(desktop) {
             width: (380/1200)*100%;
+        }
+
+        &__img {
+            width: 100%;
+            aspect-ratio: 560/315;
+            object-fit: cover;
+
+            @include mix-query(desktop) {
+                aspect-ratio: 380/285;
+            }
         }
     }
 
