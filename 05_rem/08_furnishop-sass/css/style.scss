@@ -1,0 +1,346 @@
+@charset "utf-8";
+
+@function f-rem($value) {
+    @return ($value/16)+rem;
+}
+
+$color-gb: #F4F4F4;
+$color-main: #244D4D;
+
+$breakpoints: (
+    "desktop": "screen and (min-width: 740px)",
+    ) !default;
+
+@mixin mix-query($breakpoint: "desktop") {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+@mixin mix-inner($w: (640/740)*100%, $mw: 1000px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin mix-flex($a: center, $j: space-between) {
+    display: flex;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin mix-title () {
+    font-size: f-rem(48
+    );
+font-weight: bold;
+line-height: (58/46);
+
+border-bottom: 2px solid $color-main;
+
+padding-bottom: (30em/48);
+margin-bottom: (60em/48);
+}
+
+//基本設定
+
+//HTMLのフォントサイズごと変えてしまう
+// html {
+//     font-size: (12em/16
+//     );
+
+// @include mix-query() {
+//     font-size: (16em/16);
+// }
+// }
+
+body {
+    color: $color-main;
+    //ブラウザの元設定16px の1倍という設定。
+    font-size: f-rem(16);
+    font-family: 'Gill Sans',
+        'Gill Sans MT',
+        Calibri,
+        'Trebuchet MS',
+        sans-serif;
+    line-height: (27/16);
+    letter-spacing: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+
+
+//block
+.nav {
+    &__list {
+        @include mix-flex();
+    }
+
+    &__item {
+        margin-left: (30em/16);
+    }
+}
+
+.nav--attention {
+    text-decoration: underline;
+}
+
+.btn {
+    display: block;
+    font-weight: bold;
+    color: #fff;
+    background-color: $color-main;
+
+    padding: (17em/16) 0;
+    width: 165px;
+
+    text-align: center;
+    margin: (60em/16) auto 0;
+}
+
+//!index
+.header {
+    padding: (40em/16) 0;
+
+    background-color: #fff;
+
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    &__inner {
+        @include mix-inner();
+        @include mix-flex();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1000/1440)*100%);
+        }
+    }
+
+    &__title {
+        font-size: f-rem(26);
+        font-weight: bold;
+        color: $color-main;
+    }
+}
+
+.firstView {
+    padding: (250em/16) 0 (140em/16) 0;
+    background: url(../images/bg_hero.png)no-repeat center bottom/cover;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1000/1440)*100%);
+        }
+    }
+
+    &__content {
+        width: 480px;
+        background-color: rgba($color: #fff, $alpha: .6);
+
+        padding: (65em/16) (60em/16);
+    }
+
+    &__text {
+        font-size: f-rem(48);
+        font-weight: bold;
+        line-height: (58/48);
+    }
+}
+
+.about {
+    margin: (80em/16) 0 (120em/16);
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1000/1440)*100%);
+        }
+    }
+
+    &__title {
+        @include mix-title();
+    }
+}
+
+.post {
+
+    @include mix-query(desktop) {
+        @include mix-flex(flex-start);
+        flex-wrap: wrap;
+        margin-bottom: -50px;
+    }
+
+    &__list {
+        margin-bottom: (50em/16);
+        @include mix-flex(flex-start);
+
+        @include mix-query(desktop) {
+            width: (470/1000)*100%;
+        }
+    }
+
+    &__img {
+        width: 200px;
+
+        aspect-ratio: 5/3;
+        object-fit: cover;
+
+        @include mix-query(desktop) {
+            aspect-ratio: 1/1;
+        }
+    }
+
+    &__content {
+        // width: (420em/16);flex:1;なので必要ない
+        flex: 1;
+        margin-left: (20em/16);
+    }
+
+    &__title {
+        font-size: f-rem(24);
+        font-weight: bold;
+
+        margin-bottom: (25em/24);
+    }
+}
+
+.products {
+    margin-bottom: (120em/16);
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1000/1440)*100%);
+        }
+    }
+
+    &__title {
+        @include mix-title();
+    }
+}
+
+.card {
+    @include mix-flex(stretch);
+    flex-wrap: wrap;
+    margin-bottom: (50em/16)*-1;
+
+    &__list {
+
+        width: (300/640)*100%;
+
+        @include mix-query(desktop) {
+            width: (300/1000)*100%;
+        }
+
+        background-color: #F4F4F4;
+        padding: (45em/16);
+        text-align: center;
+        margin-bottom: (50em/16);
+    }
+
+    &__title {
+        font-size: f-rem(24);
+        font-weight: bold;
+        line-height: (29/24);
+        margin-bottom: (15em/24);
+    }
+
+    &__price {
+        margin-bottom: (30em/16);
+    }
+
+    &__img {
+        height: 200px;
+        object-fit: contain;
+        object-position: bottom;
+    }
+}
+
+.footer {
+    background-color: $color-main;
+    color: #fff;
+
+    padding: f-rem(120) 0;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1000/1440)*100%);
+            @include mix-flex(flex-start);
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+.navAll {
+    @include mix-flex(flex-start);
+
+    margin-bottom: (60em/16);
+
+    @include mix-query(desktop) {
+        width: (360/1000)*100%;
+        margin-bottom: 0;
+    }
+
+    &__content {
+        width: (300/640)*100%;
+
+        @include mix-query(desktop) {
+            width: (150/360)*100%;
+        }
+    }
+
+    &__title {
+        font-size: f-rem(24);
+        font-weight: bold;
+        margin-bottom: (25em/24);
+
+        line-height: (29/24);
+    }
+
+    &__item {
+        margin-bottom: (15em/16);
+    }
+
+    &__item:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.info {
+
+    width: (250/1000)*100%;
+
+    &__list {
+        //工事中
+    }
+
+    &__title {
+        font-size: f-rem(24);
+        font-weight: bold;
+        margin-bottom: (25em/24);
+
+        line-height: (29/24);
+    }
+
+    &__address {
+        margin-bottom: (15em/16);
+    }
+
+    &__mail {
+        font-size: f-rem(12);
+    }
+}
