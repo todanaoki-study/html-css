@@ -1,0 +1,386 @@
+@charset "utf-8";
+
+//変数
+$color-back: #DEF6FF;
+$color-back2: #FFF5DE;
+$color-back3: #E8EDF1;
+$color-text: #1B2D55;
+
+$breakpoints: (
+    "desktop": "screen and (min-width: 800px)",
+    ) !default;
+
+@mixin mix-query($breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+//mixin
+@mixin mix-inner($w: (640/740)*100%, $mw: 1140px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin mix-flex($a: center, $j: space-between) {
+    display: flex;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@function f-rem($value) {
+    @return ($value/16)+rem;
+}
+
+@mixin mix-title() {
+    font-family: Georgia,
+        'Times New Roman',
+        Times,
+        serif;
+    font-size: f-rem(48
+    );
+font-weight: bold;
+line-height: (58/48);
+
+margin-bottom: (80em/48);
+
+}
+
+@mixin mix-subTitle() {
+    font-family: Georgia,
+        'Times New Roman',
+        Times,
+        serif;
+    font-size: f-rem(36);
+    font-weight: bold;
+    line-height: (44/36);
+
+    margin-bottom: (40em/36);
+}
+
+//Item-list
+.nav {
+
+    &__menu {
+        @include mix-query(desktop) {
+            display: none;
+        }
+    }
+
+    &__list {
+        display: none;
+
+        @include mix-query(desktop) {
+            @include mix-flex(flex-start, flex-start)
+        }
+    }
+
+    &__item {
+        font-size: f-rem(16);
+        margin-left: (30em/16);
+        white-space: nowrap;
+    }
+
+    &__space {
+        margin-left: 100px;
+    }
+}
+
+.share {
+    &__list {
+        @include mix-flex(flex-start, flex-start);
+    }
+
+    &__item {
+        display: block;
+        margin-right: (20em/14);
+    }
+}
+
+.ellipse {
+    display: block;
+    background-color: $color-back2;
+
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+
+    margin: 0 auto (25em/14);
+}
+
+.post {
+    @include mix-query(desktop) {
+        @include mix-flex(stretch);
+    }
+
+    &__list {
+        @include mix-query(desktop) {
+            width: (540/1140)*100%;
+
+            @include mix-flex(flex-start, flex-start);
+            flex-direction: column;
+        }
+    }
+
+    &__list:not(:last-child) {
+        margin-bottom: (80em/14);
+
+        @include mix-query(desktop) {
+            margin-bottom: 0;
+        }
+    }
+
+    &__img {
+        display: block;
+        margin: 0 auto (40em/14);
+    }
+
+    &__title {
+        @include mix-subTitle();
+    }
+
+    &__text {
+
+        margin-bottom: auto;
+    }
+}
+
+.news {
+    &__content:not(:last-child) {
+        margin-bottom: (120em/14);
+    }
+
+    &__content {
+        @include mix-query(desktop) {
+            @include mix-flex();
+        }
+    }
+
+    &__overview {
+        @include mix-query(desktop) {
+            width: (500/1140)*100%;
+        }
+    }
+
+    &__title {
+        @include mix-subTitle();
+    }
+
+    &__text {
+        margin-bottom: (60em/14);
+
+        &::after {
+            content: "";
+            display: block;
+            width: (60em/14);
+
+            border-bottom: 1px solid;
+            margin-top: (40em/14);
+        }
+
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: (60em/14);
+
+        @include mix-query(desktop) {
+            margin-bottom: 0;
+        }
+    }
+
+    &__item {
+        background-color: #fff;
+        padding: (15em/12) (30em/12);
+        margin-right: (20em/12);
+        border-radius: 25px;
+
+        font-weight: bold;
+        font-size: f-rem(12);
+
+        white-space: nowrap;
+    }
+
+    &__img {
+        @include mix-query(desktop) {
+            width: (580/1140)*100%;
+        }
+    }
+}
+
+
+//!最後の要素以外にborder付与
+.post:not(:last-child) {
+    padding-bottom: (80em/14);
+    margin-bottom: (80em/14);
+    border-bottom: 1px solid $color-text;
+}
+
+.btn {
+    display: block;
+    width: 197px;
+    background-color: $color-text;
+    color: #fff;
+    font-weight: bold;
+    padding: (20em/14) 0;
+    margin: (60em/14) auto 0;
+    text-align: center;
+}
+
+.data {
+    margin-bottom: (60em/14);
+
+    @include mix-query(desktop) {
+        margin-bottom: 0;
+    }
+
+    &__content {
+        @include mix-flex(flex-start, flex-start);
+        width: 400px;
+        margin-top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: (15em/14);
+    }
+
+    &__content:last-child {
+        margin-bottom: 0;
+    }
+
+    &__title {
+        width: 100px;
+    }
+}
+
+//!index
+body {
+    color: $color-text;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: f-rem(14);
+    line-height: (24/14);
+    letter-spacing: (50/1000)*1em;
+}
+
+img {
+    vertical-align: bottom;
+    max-width: 100%;
+    height: auto;
+}
+
+.header {
+    margin: (60em/14) 0;
+
+    &__inner {
+        @include mix-inner();
+        @include mix-flex();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1140/1920)*100%)
+        }
+    }
+}
+
+.firstView {
+    background-color: $color-back;
+    margin-bottom: (120em/14);
+
+    &__inner {
+        @include mix-inner();
+        padding: (150em/14) 0 (560em/14);
+        background: url(../images/img_about.png)no-repeat center bottom 5.87%;
+
+        @include mix-query(desktop) {
+            @include mix-inner((1140/1920)*100%);
+            padding: (150em/14) 0 (170em/14);
+            background: url(../images/img_about.png)no-repeat center right 5.87%;
+        }
+    }
+
+    &__content {
+        width: 640px;
+    }
+
+    &__title {
+        @include mix-title();
+    }
+
+    &__text {
+        margin-bottom: (38em/14);
+    }
+}
+
+.advantage {
+
+    margin-bottom: (120em/14);
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1140/1920)*100%)
+        }
+    }
+
+    &__title {
+        @include mix-title();
+        text-align: center;
+    }
+}
+
+.feature {
+    background-color: $color-back2;
+    padding: (120em/14) 0;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1140/1920)*100%)
+        }
+    }
+
+    &__title {
+        @include mix-title();
+        text-align: center;
+    }
+
+    & .ellipse {
+        background-color: $color-back;
+    }
+}
+
+.footer {
+    padding: (120em/16) 0 (200em/16);
+    background-color: $color-back;
+
+    &__inner {
+        @include mix-inner();
+
+        @include mix-query(desktop) {
+            @include mix-inner((1140/1920)*100%);
+            @include mix-flex(flex-end);
+        }
+    }
+
+    &__title {
+        @include mix-subTitle();
+        text-align: center;
+
+        @include mix-query(desktop) {
+            text-align-last: left;
+        }
+    }
+
+    &__copy {
+        display: block;
+        text-align: center;
+
+        font-weight: bold;
+
+        @include mix-query(desktop) {}
+    }
+}
