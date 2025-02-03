@@ -41,12 +41,12 @@ a {
   color: #fff;
   font-weight: bold;
   text-align: center;
-  transition: 0.3s;
+  transition: 0.3s ease;
+  position: relative;
 }
 .btn:hover {
   transform: scale(1.05);
-  background-color: #ed145b;
-  text-shadow: 3px 3px 3px #2b2b2b;
+  background-color: #ED145B;
 }
 
 /* outline */
@@ -67,13 +67,6 @@ a {
   margin: 30px auto 0;
   border-bottom: 2px solid #ED145B;
 }
-.outline__text {
-  transition: 0.1s cubic-bezier(1, 1.95, 0.19, -0.97);
-}
-.outline__text:hover {
-  text-shadow: 3px 3px 3px #ED145B;
-  transform: scale(1.1);
-}
 .outline__em {
   color: #ED145B;
   font-weight: bold;
@@ -82,7 +75,6 @@ a {
 
 /* card */
 .card {
-  box-shadow: 3px 3px 10px 3px #ddd;
   background-color: #f4f4f4;
 }
 .card__link {
@@ -114,9 +106,6 @@ a {
 }
 .header__logo {
   line-height: 1;
-  transform: translateX(100px);
-  transform: rotate(45deg);
-  transform-origin: center left;
 }
 
 /* gnav */
@@ -132,12 +121,7 @@ a {
 .gnav__link {
   color: #fff;
   font-weight: bold;
-  transition: 0.3s cubic-bezier(1, 1.95, 0.19, -0.97) color;
 }
-.gnav__link:hover, .gnav__link--current {
-  color: #ED145B;
-}
-
 /* footer */
 .footer {
   color: #fff;

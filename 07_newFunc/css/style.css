@@ -1,0 +1,39 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+}
+.card__image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 8em 1fr;
+  gap: 20px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.nav {
+  justify-self: end;
+}
+
+.inner {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+/*# sourceMappingURL=style.css.map */
